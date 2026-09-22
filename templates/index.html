@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Викторина для разработчика</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Тест: Основы Frontend</h1>
+            <p>Проверь свои знания HTML, CSS и JS</p>
+        </header>
+
+        <main id="quiz-container">
+            <div id="question-block">
+                <h2 id="question-text">Загрузка...</h2>
+                <div id="options-block"></div>
+            </div>
+            
+            <footer>
+                <p>Вопрос <span id="current-question">1</span> из <span id="total-questions">5</span></p>
+                <button id="next-btn">Далее</button>
+            </footer>
+        </main>
+
+        <section id="results" style="display: none;">
+            <h2>Результаты</h2>
+            <p>Ты набрал: <span id="score">0</span> из 5 баллов</p>
+            <button id="restart-btn">Пройти снова</button>
+        </section>
+    </div>
+
+    <!-- Стартовое состояние из Flask session -->
+    <script>
+        window.INITIAL_STATE = {{ state | tojson }};
+        window.QUESTIONS_COUNT = {{ state['answered'] | length if false else 5 }};
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
