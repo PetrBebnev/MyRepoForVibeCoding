@@ -35,8 +35,8 @@
 
     <!-- Стартовое состояние из Flask session -->
     <script>
-        window.INITIAL_STATE = {{ state | tojson }};
-        window.QUESTIONS_COUNT = {{ state['answered'] | length if false else 5 }};
+    window.INITIAL_STATE = {{ state | tojson }};
+    window.QUESTIONS_COUNT = {{ total_questions }};
     </script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
